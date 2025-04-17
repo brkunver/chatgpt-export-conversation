@@ -20,10 +20,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "✅ Successfully merged 'development' into 'main' and pushed to GitHub!"
+echo "✅ Successfully merged 'dev' into 'main' and pushed to GitHub!"
 
 git checkout dev
 if [ $? -ne 0 ]; then
-    echo "❌ Failed to switch back to the 'development' branch."
+    echo "❌ Failed to switch back to the 'dev' branch."
     exit 1
 fi
