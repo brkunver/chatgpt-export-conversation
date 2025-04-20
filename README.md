@@ -1,7 +1,16 @@
-# WXT + Vue 3
+# Chatgpt Export Conversation Extension
 
-This template should help get you started developing with Vue 3 in WXT.
+- A Browser Extension to export ChatGPT conversation with one click.
+- Completely free and open source.
+- Does not collect personal information
 
-## Recommended IDE Setup
+## Installation
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
+- Chrome Extension Store : 'url will be added'
+- Firefox Add-ons : 'url will be added'
+
+## Usage
+
+- Open a Chatgpt conversation
+- Click on the extension icon
+- Click Download button
