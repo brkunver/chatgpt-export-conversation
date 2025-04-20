@@ -1,6 +1,14 @@
+import { getConversation } from "@/utils/get-conversation"
+import { downloadTxtFile } from "@/utils/download-helper"
+
 export default defineContentScript({
-  matches: ['*://*.chatgpt.com/*'],
+  matches: ["*://*.chatgpt.com/*"],
   main() {
-    console.log('Hello content.');
+    browser.runtime.onMessage.addListener((req, sender, response) => {
+      if (req.action == "log") {
+        let content = getConversation(req.includeUser)
+        downloadTxtFile(content)
+      }
+    })
   },
-});
+})
