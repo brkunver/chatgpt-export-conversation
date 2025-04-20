@@ -1,8 +1,8 @@
 {
   "name": "Chatgpt Export Conversation",
   "description": "Export ChatGPT conversation easily",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
