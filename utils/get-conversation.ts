@@ -1,18 +1,30 @@
-export function getConversation(includeUser = false) {
+export function getConversation(includeUser = false, includeRoleNames = false) {
   let content: string = ""
-  let markdownElements: NodeListOf<Element>
+  let userElements
+  let assistantElements
+
+  assistantElements = document.querySelectorAll("[data-message-author-role='assistant']")
 
   if (includeUser) {
-    markdownElements = document.querySelectorAll(
-      '[data-message-author-role="user"], [data-message-author-role="assistant"]',
-    )
+    userElements = document.querySelectorAll("[data-message-author-role='user']")
+    for (let i = 0; i < userElements.length; i++) {
+      if (includeRoleNames) {
+        content += "User :\n"
+      }
+      content += userElements[i].textContent + "\n\n"
+      if (includeRoleNames) {
+        content += "Assistant :\n"
+      }
+      content += assistantElements[i].textContent + "\n\n"
+    }
   } else {
-    markdownElements = document.querySelectorAll("[data-message-author-role='assistant']")
+    for (let i = 0; i < assistantElements.length; i++) {
+      if (includeRoleNames) {
+        content += "Assistant :\n"
+      }
+      content += assistantElements[i].textContent + "\n\n"
+    }
   }
 
-  for (let markdownElement of markdownElements) {
-    content += markdownElement.textContent + "\n\n"
-  }
-
-  return content
+  return content.replace(/CopyEdit/g, " ")
 }
