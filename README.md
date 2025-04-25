@@ -14,3 +14,7 @@
 - Open a Chatgpt conversation
 - Click on the extension icon
 - Click Download button
+
+## Changelog
+
+See the [CHANGELOG](./CHANGELOG.md) for release notes and version history.
