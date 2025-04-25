@@ -24,11 +24,8 @@ export default defineBackground(() => {
             .then(() => {
               devlog("background => logContent done")
             })
-            .catch(() => {
-              devlog("background => logContent error")
-            })
-            .finally(() => {
-              devlog("background => logContent finally")
+            .catch(err => {
+              devlog("background => logContent error", err)
             })
         }
       })
