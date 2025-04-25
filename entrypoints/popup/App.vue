@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import devlog from "@/utils/dev-log"
 import { ref } from "vue"
 import Toggle from "@/components/toggle.vue"
 
@@ -8,19 +9,36 @@ const includeRoleNamesToggle = ref(false)
 const userPromptsId = "user-prompts"
 const roleNamesId = "role-names"
 
-function logChatHandler() {
-  browser.runtime.sendMessage({
-    action: "logContent",
-    includeUser: includeUserToggle.value,
-    includeRoleNames: includeRoleNamesToggle.value,
-  })
+function logChatHandler()
+{
+  devlog("logChatHandler called")
+  browser.runtime
+    .sendMessage({
+      action: "logContent",
+      includeUser: includeUserToggle.value,
+      includeRoleNames: includeRoleNamesToggle.value,
+    })
+    .then(() =>
+    {
+      devlog("logChatHandler done")
+    })
+    .catch(() =>
+    {
+      devlog("logChatHandler error")
+    })
+    .finally(() =>
+    {
+      devlog("logChatHandler finally")
+    })
 }
 
-function toggleIncludeUser(check: boolean) {
+function toggleIncludeUser(check: boolean)
+{
   includeUserToggle.value = check
 }
 
-function toggleIncludeRoleNames(check: boolean) {
+function toggleIncludeRoleNames(check: boolean)
+{
   includeRoleNamesToggle.value = check
 }
 </script>
