@@ -3,7 +3,7 @@ import { downloadTxtFile } from "@/utils/download-helper"
 import devlog from "@/utils/dev-log"
 
 export default defineContentScript({
-  matches: ["*://*.chatgpt.com/c/*"],
+  matches: ["*://chatgpt.com/*", "*://*.chatgpt.com/c/*"],
   main() {
     devlog("content script loaded")
     browser.runtime.onMessage.addListener((req, sender, response) => {
