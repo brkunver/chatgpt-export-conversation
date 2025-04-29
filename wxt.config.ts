@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineConfig({
   modules: ["@wxt-dev/module-vue"],
   manifest: {
-    permissions: ["activeTab", "tabs"],
+    permissions: ["tabs"],
   },
   webExt: {
     disabled: true,
