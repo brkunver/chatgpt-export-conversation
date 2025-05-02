@@ -1,0 +1,8 @@
+extensionName: "تصدير محادثة ChatGPT"
+extensionDescription: "قم بتصدير محادثات ChatGPT كملفات نصية"
+
+content:
+  chatGptTabNotFound: "يجب أن يكون لديك علامة تبويب chatgpt.com/c/* مفتوحة لتصدير المحادثة."
+  includeUserPrompts: "تضمين مطالبات المستخدم"
+  includeRoleNames: "تضمين أسماء الأدوار"
+  downloadAsTxt: "تنزيل كـ TXT"

@@ -1,2 +1,8 @@
 extensionName: "ChatGPT Export Conversation"
 extensionDescription: "Export your ChatGPT conversations as text files"
+
+content:
+  chatGptTabNotFound: "You must have a chatgpt.com/c/* tab open to export the conversation."
+  includeUserPrompts: "Include User Prompts"
+  includeRoleNames: "Include Role Names"
+  downloadAsTxt: "Download As TXT"

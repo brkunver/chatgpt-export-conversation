@@ -1,2 +1,9 @@
 extensionName: "ChatGPT Konuşmayı indir"
-extensionDescription: "ChatGPT konuşmalarınızı metin dosyası olarak indirin"
+extensionName: "ChatGPT Sohbet Dışa Aktarma"
+extensionDescription: "ChatGPT sohbetlerinizi metin dosyası olarak dışa aktarın"
+
+content:
+  chatGptTabNotFound: "Sohbeti dışa aktarmak için chatgpt.com/c/* sekmesi açık olmalıdır."
+  includeUserPrompts: "Kullanıcı Mesajlarını Dahil Et"
+  includeRoleNames: "Rol İsimlerini Dahil Et"
+  downloadAsTxt: "TXT Olarak İndir"

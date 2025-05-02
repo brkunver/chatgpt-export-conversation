@@ -1,0 +1,8 @@
+extensionName: "ChatGPT 对话导出"
+extensionDescription: "将ChatGPT对话导出为文本文件"
+
+content:
+  chatGptTabNotFound: "要导出对话，必须打开chatgpt.com/c/*标签页"
+  includeUserPrompts: "包含用户提示"
+  includeRoleNames: "包含角色名称"
+  downloadAsTxt: "下载为TXT"

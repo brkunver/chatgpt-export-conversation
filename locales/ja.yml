@@ -1,0 +1,8 @@
+extensionName: "ChatGPT会話のエクスポート"
+extensionDescription: "ChatGPTの会話をテキストファイルとしてエクスポートします"
+
+content:
+  chatGptTabNotFound: "会話をエクスポートするにはchatgpt.com/c/*タブが開いている必要があります"
+  includeUserPrompts: "ユーザーのプロンプトを含める"
+  includeRoleNames: "役割名を含める"
+  downloadAsTxt: "TXTとしてダウンロード"
