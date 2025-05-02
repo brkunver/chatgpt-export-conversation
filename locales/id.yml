@@ -1,0 +1,8 @@
+extensionName: "ChatGPT Ekspor Percakapan"
+extensionDescription: "Ekspor percakapan ChatGPT Anda sebagai file teks"
+
+content:
+  chatGptTabNotFound: "Anda harus membuka tab chatgpt.com/c/* untuk mengekspor percakapan."
+  includeUserPrompts: "Sertakan Prompt Pengguna"
+  includeRoleNames: "Sertakan Nama Peran"
+  downloadAsTxt: "Unduh Sebagai TXT"

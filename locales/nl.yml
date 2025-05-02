@@ -1,0 +1,8 @@
+extensionName: "ChatGPT Exporteer Gesprek"
+extensionDescription: "Exporteer je ChatGPT-gesprekken als tekstbestanden"
+
+content:
+  chatGptTabNotFound: "Je moet een chatgpt.com/c/* tabblad open hebben om het gesprek te exporteren."
+  includeUserPrompts: "Inclusief Gebruikersprompts"
+  includeRoleNames: "Inclusief Rolnamen"
+  downloadAsTxt: "Download Als TXT"

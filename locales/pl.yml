@@ -1,0 +1,8 @@
+extensionName: "ChatGPT Eksportuj Konwersację"
+extensionDescription: "Eksportuj swoje konwersacje z ChatGPT jako pliki tekstowe"
+
+content:
+  chatGptTabNotFound: "Musisz mieć otwartą kartę chatgpt.com/c/*, aby wyeksportować konwersację."
+  includeUserPrompts: "Uwzględnij Prośby Użytkownika"
+  includeRoleNames: "Uwzględnij Nazwy Ról"
+  downloadAsTxt: "Pobierz Jako TXT"
