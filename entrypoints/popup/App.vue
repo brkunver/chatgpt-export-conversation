@@ -12,8 +12,8 @@ const roleNamesId = "role-names"
 
 function logChatHandler() {
   errorMessage.value = ""
-  browser.tabs.query({}, function(tabs) {
-    const targetTab = tabs.find(function(tab) {
+  browser.tabs.query({}, function (tabs) {
+    const targetTab = tabs.find(function (tab) {
       return tab.url && tab.url.startsWith("https://chatgpt.com/c/")
     })
     if (!targetTab) {
@@ -27,23 +27,20 @@ function logChatHandler() {
         includeUser: includeUserToggle.value,
         includeRoleNames: includeRoleNamesToggle.value,
       })
-      .then(function() {
+      .then(function () {
         devlog("logChatHandler done")
       })
-      .catch(function() {
+      .catch(function () {
         devlog("logChatHandler error")
       })
   })
 }
 
-
-function toggleIncludeUser(check: boolean)
-{
+function toggleIncludeUser(check: boolean) {
   includeUserToggle.value = check
 }
 
-function toggleIncludeRoleNames(check: boolean)
-{
+function toggleIncludeRoleNames(check: boolean) {
   includeRoleNamesToggle.value = check
 }
 </script>
@@ -51,7 +48,7 @@ function toggleIncludeRoleNames(check: boolean)
 <template>
   <main class="flex min-w-[300px] flex-col justify-center gap-4 p-4 text-center">
     <h1 class="text-2xl font-bold">ChatGPT Export Conversation</h1>
-    <div v-if="errorMessage" class="rounded bg-red-100 text-red-700 px-4 py-2 mb-2 text-base font-medium">
+    <div v-if="errorMessage" class="mb-2 rounded bg-red-100 px-4 py-2 text-base font-medium text-red-700">
       {{ errorMessage }}
     </div>
     <div class="flex items-center gap-2">
