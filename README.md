@@ -6,7 +6,7 @@
 
 ## Installation
 
-- Chrome Extension Store : 'url will be added'
+- Chrome Extension Store : htps://chromewebstore.google.com/detail/chatgpt-export-conversati/gfffngldnledckjhnpblmkmelhbfmhpm
 - Firefox Add-ons : 'url will be added'
 
 ## Usage
