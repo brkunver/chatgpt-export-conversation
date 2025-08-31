@@ -27,5 +27,9 @@
     "typescript": "5.6.3",
     "vue-tsc": "^2.2.8",
     "wxt": "^0.20.3"
-  }
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "spawn-sync"
+  ]
 }
