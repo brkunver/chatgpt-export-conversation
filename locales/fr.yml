@@ -1,10 +1,10 @@
 extensionName: "Exportation de conversation ChatGPT"
-extensionDescription: "Exportez vos conversations ChatGPT sous forme de fichiers texte"
+extensionDescription: "Exportez vos conversations et discussions de groupe ChatGPT sous forme de fichiers texte"
 
 content:
   chatGptTabNotFound: "Veuillez ouvrir ChatGPT."
-  conversationNotFound: "Je n'ai pas pu lire la conversation sur cette page."
-  contentScriptUnavailable: "La page de conversation n'est pas encore prête. Veuillez la recharger et réessayer."
+  conversationNotFound: "Je n'ai pas pu lire la conversation ou la discussion de groupe sur cette page."
+  contentScriptUnavailable: "La page de conversation ou de discussion de groupe n'est pas encore prête. Veuillez la recharger et réessayer."
   downloadFailed: "Le fichier n'a pas pu être téléchargé. Veuillez réessayer."
   unexpectedError: "Une erreur inattendue s'est produite. Veuillez réessayer."
   includeUserPrompts: "Inclure les invites utilisateur"

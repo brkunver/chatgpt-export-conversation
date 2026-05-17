@@ -1,10 +1,10 @@
 extensionName: "ChatGPT 대화 내보내기"
-extensionDescription: "ChatGPT 대화를 텍스트 파일로 내보내기"
+extensionDescription: "ChatGPT 대화와 그룹 채팅을 텍스트 파일로 내보내기"
 
 content:
   chatGptTabNotFound: "ChatGPT를 열어 주세요."
-  conversationNotFound: "이 페이지에서 대화를 읽을 수 없습니다."
-  contentScriptUnavailable: "대화 페이지가 아직 준비되지 않았습니다. 새로고침한 뒤 다시 시도해 주세요."
+  conversationNotFound: "이 페이지에서 대화 또는 그룹 채팅을 읽을 수 없습니다."
+  contentScriptUnavailable: "대화 또는 그룹 채팅 페이지가 아직 준비되지 않았습니다. 새로고침한 뒤 다시 시도해 주세요."
   downloadFailed: "파일을 다운로드할 수 없습니다. 다시 시도해 주세요."
   unexpectedError: "예상치 못한 오류가 발생했습니다. 다시 시도해 주세요."
   includeUserPrompts: "사용자 프롬프트 포함"

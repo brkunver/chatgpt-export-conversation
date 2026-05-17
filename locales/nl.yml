@@ -1,10 +1,10 @@
 extensionName: "ChatGPT Exporteer Gesprek"
-extensionDescription: "Exporteer je ChatGPT-gesprekken als tekstbestanden"
+extensionDescription: "Exporteer je ChatGPT-gesprekken en groepschats als tekstbestanden"
 
 content:
   chatGptTabNotFound: "Open ChatGPT."
-  conversationNotFound: "Ik kon het gesprek van deze pagina niet lezen."
-  contentScriptUnavailable: "De gesprekspagina is nog niet klaar. Vernieuw de pagina en probeer het opnieuw."
+  conversationNotFound: "Ik kon het gesprek of de groepschat van deze pagina niet lezen."
+  contentScriptUnavailable: "De gespreks- of groepschatpagina is nog niet klaar. Vernieuw de pagina en probeer het opnieuw."
   downloadFailed: "Het bestand kon niet worden gedownload. Probeer het opnieuw."
   unexpectedError: "Er is een onverwachte fout opgetreden. Probeer het opnieuw."
   includeUserPrompts: "Inclusief Gebruikersprompts"

@@ -1,10 +1,10 @@
 extensionName: "تصدير محادثة ChatGPT"
-extensionDescription: "قم بتصدير محادثات ChatGPT كملفات نصية"
+extensionDescription: "قم بتصدير محادثات ChatGPT والمحادثات الجماعية كملفات نصية"
 
 content:
   chatGptTabNotFound: "يرجى فتح ChatGPT."
-  conversationNotFound: "تعذر قراءة المحادثة من هذه الصفحة."
-  contentScriptUnavailable: "صفحة المحادثة ليست جاهزة بعد. يرجى تحديث الصفحة والمحاولة مرة أخرى."
+  conversationNotFound: "تعذر قراءة المحادثة أو المحادثة الجماعية من هذه الصفحة."
+  contentScriptUnavailable: "صفحة المحادثة أو المحادثة الجماعية ليست جاهزة بعد. يرجى تحديث الصفحة والمحاولة مرة أخرى."
   downloadFailed: "تعذر تنزيل الملف. يرجى المحاولة مرة أخرى."
   unexpectedError: "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."
   includeUserPrompts: "تضمين مطالبات المستخدم"

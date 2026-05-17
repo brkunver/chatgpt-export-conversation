@@ -1,10 +1,10 @@
 extensionName: "Экспорт беседы ChatGPT"
-extensionDescription: "Экспортируйте свои беседы с ChatGPT в виде текстовых файлов"
+extensionDescription: "Экспортируйте свои беседы и групповые чаты ChatGPT в виде текстовых файлов"
 
 content:
   chatGptTabNotFound: "Откройте ChatGPT."
-  conversationNotFound: "Не удалось прочитать беседу на этой странице."
-  contentScriptUnavailable: "Страница беседы ещё не готова. Обновите её и попробуйте снова."
+  conversationNotFound: "Не удалось прочитать беседу или групповой чат на этой странице."
+  contentScriptUnavailable: "Страница беседы или группового чата ещё не готова. Обновите её и попробуйте снова."
   downloadFailed: "Не удалось скачать файл. Попробуйте ещё раз."
   unexpectedError: "Произошла непредвиденная ошибка. Попробуйте ещё раз."
   includeUserPrompts: "Включать сообщения пользователя"

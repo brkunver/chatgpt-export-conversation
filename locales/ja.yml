@@ -1,10 +1,10 @@
 extensionName: "ChatGPT会話のエクスポート"
-extensionDescription: "ChatGPTの会話をテキストファイルとしてエクスポートします"
+extensionDescription: "ChatGPTの会話やグループチャットをテキストファイルとしてエクスポートします"
 
 content:
   chatGptTabNotFound: "ChatGPTを開いてください。"
-  conversationNotFound: "このページから会話を読み取れませんでした。"
-  contentScriptUnavailable: "会話ページの準備がまだできていません。ページを再読み込みしてもう一度お試しください。"
+  conversationNotFound: "このページから会話またはグループチャットを読み取れませんでした。"
+  contentScriptUnavailable: "会話またはグループチャットのページの準備がまだできていません。ページを再読み込みしてもう一度お試しください。"
   downloadFailed: "ファイルをダウンロードできませんでした。もう一度お試しください。"
   unexpectedError: "予期しないエラーが発生しました。もう一度お試しください。"
   includeUserPrompts: "ユーザーのプロンプトを含める"
