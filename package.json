@@ -29,11 +29,5 @@
     "typescript": "5.6.3",
     "vue-tsc": "^2.2.8",
     "wxt": "^0.20.26"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "spawn-sync"
-    ]
   }
 }
