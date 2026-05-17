@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import devlog from "@/utils/dev-log"
+import type { ConversationExportFormat } from "@/utils/get-conversation"
 import { ref } from "vue"
 import Toggle from "@/components/toggle.vue"
 
@@ -12,7 +13,7 @@ const errorMessage = ref("")
 const userPromptsId = "user-prompts"
 const roleNamesId = "role-names"
 
-function logChatHandler() {
+function logChatHandler(exportFormat: ConversationExportFormat) {
   errorMessage.value = ""
   browser.tabs.query({}, function (tabs) {
     const targetTab = tabs.find(function (tab) {
@@ -26,6 +27,7 @@ function logChatHandler() {
     browser.runtime
       .sendMessage({
         action: "logContent",
+        exportFormat,
         includeUser: includeUserToggle.value,
         includeRoleNames: includeRoleNamesToggle.value,
       })
@@ -65,8 +67,19 @@ function toggleIncludeRoleNames(check: boolean) {
         i18n.t("content.includeRoleNames")
       }}</label>
     </div>
-    <button class="cursor-pointer rounded bg-black px-2 py-2 text-center text-lg text-white" @click="logChatHandler">
-      {{ i18n.t("content.downloadAsTxt") }}
-    </button>
+    <div class="grid grid-cols-2 gap-2">
+      <button
+        class="cursor-pointer rounded bg-black px-2 py-2 text-center text-base leading-tight text-white"
+        @click="logChatHandler('txt')"
+      >
+        {{ i18n.t("content.downloadAsTxt") }}
+      </button>
+      <button
+        class="cursor-pointer rounded bg-black px-2 py-2 text-center text-base leading-tight text-white"
+        @click="logChatHandler('markdown')"
+      >
+        {{ i18n.t("content.downloadAsMarkdown") }}
+      </button>
+    </div>
   </main>
 </template>
