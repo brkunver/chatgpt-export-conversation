@@ -16,7 +16,7 @@ export default defineContentScript({
   matches: ["*://chatgpt.com/*", "*://*.chatgpt.com/*"],
   main() {
     devlog("content script loaded")
-    browser.runtime.onMessage.addListener((req): ExportResponse | undefined => {
+    browser.runtime.onMessage.addListener(async (req): Promise<ExportResponse | undefined> => {
       devlog("content message received => req", req)
       if (req.action != "log") {
         return

@@ -1,5 +1,5 @@
 import devlog from "@/utils/dev-log"
-import { isChatGptTabUrl, isConversationTabUrl, type ExportErrorCode, type ExportResponse } from "../utils/export-flow"
+import { isChatGptTabUrl, type ExportErrorCode, type ExportResponse } from "../utils/export-flow"
 
 function mapBackgroundError(error: unknown): ExportErrorCode {
   const message = error instanceof Error ? error.message : String(error)
@@ -21,18 +21,17 @@ export default defineBackground(() => {
     devlog("background => req", req)
 
     try {
-      const tabs = await browser.tabs.query({})
-      const chatGptTabs = tabs.filter(tab => isChatGptTabUrl(tab.url))
+      const tabs = await browser.tabs.query({ active: true, currentWindow: true })
+      const targetTab = tabs.find(tab => isChatGptTabUrl(tab.url))
 
-      if (chatGptTabs.length === 0) {
-        devlog("No ChatGPT tab found")
+      if (!targetTab) {
+        devlog("No active ChatGPT tab found")
         return { ok: false, errorCode: "no_chatgpt_site" }
       }
 
-      const targetTab = chatGptTabs.find(tab => isConversationTabUrl(tab.url)) ?? chatGptTabs[0]
       const tabId = targetTab.id
 
-      devlog("Matching tab ID: ", tabId)
+      devlog("Active ChatGPT tab ID: ", tabId)
 
       if (typeof tabId != "number") {
         return { ok: false, errorCode: "unexpected_error" }
