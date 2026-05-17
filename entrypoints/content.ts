@@ -28,7 +28,7 @@ export default defineContentScript({
         const content = getConversation(req.includeUser, req.includeRoleNames, exportFormat)
 
         try {
-          downloadConversationFile(content, exportFormat)
+          downloadConversationFile(content, exportFormat, document.title)
         } catch (error) {
           devlog("content => download error", error)
           return { ok: false, errorCode: "download_failed" }
