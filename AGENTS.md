@@ -6,6 +6,8 @@ This repository is a browser extension built with WXT, Vue 3, TypeScript, Tailwi
 
 The extension is intentionally small: keep changes focused on the popup -> background -> content-script export flow unless the task explicitly asks for a broader redesign.
 
+The package manager is `pnpm` (`packageManager` is pinned in `package.json`). Use `pnpm run ...` for project scripts.
+
 ## Main User Flow
 
 1. The popup UI lets the user choose:
@@ -30,6 +32,7 @@ The extension is intentionally small: keep changes focused on the popup -> backg
 - `components/toggle.vue`: reusable toggle control used by the popup.
 - `locales/*.yml`: localized extension name, description, labels, and error messages.
 - `wxt.config.ts`: WXT modules, manifest metadata, localized manifest fields, development name prefix, disabled `webExt`, and Tailwind Vite plugin setup.
+- `assets/fonts/*.woff2`: bundled Inter font files used by the popup. Keep only the weights the UI actually uses.
 
 ## Project Structure Notes
 
@@ -38,7 +41,8 @@ The extension is intentionally small: keep changes focused on the popup -> backg
 - Shared Vue components live under `components/`.
 - Shared utilities live under `utils/`.
 - Localization strings live under `locales/`.
-- Static assets live under `assets/` and `public/`.
+- Bundled assets live under `assets/`; WXT/Vite processes referenced files there and emits hashed output.
+- Public passthrough assets live under `public/`; WXT copies them directly into builds, so avoid placing large generated or unused files there.
 - WXT-generated files live under `.wxt/` and `.output/`; do not edit generated output directly.
 
 ## Runtime Behavior Notes
@@ -56,6 +60,7 @@ The extension is intentionally small: keep changes focused on the popup -> backg
 - Role labels are `User` and `Assistant`; Markdown role labels are emitted as `##` headings.
 - The downloaded filename is based on `document.title`, sanitized, truncated, and given the selected extension.
 - `CopyEdit` text is stripped during final export cleanup.
+- Popup typography uses local Inter WOFF2 files from `assets/fonts` for normal `400`, medium `500`, semibold `600`, and black `900`. Do not reintroduce the large variable `public/Inter.ttf` unless there is a strong reason.
 
 ## Error Handling Notes
 
@@ -67,22 +72,23 @@ The extension is intentionally small: keep changes focused on the popup -> backg
 
 ## Commands
 
-- `bun run dev`: start the extension in dev mode.
-- `bun run dev:firefox`: start a Firefox dev build.
-- `bun run build`: create a production Chromium build.
-- `bun run build:firefox`: create a Firefox production build.
-- `bun run zip`: package the Chromium build.
-- `bun run zip:firefox`: package the Firefox build.
-- `bun run zip:edge`: package the Edge build.
-- `bun run compile`: type-check with `vue-tsc --noEmit`.
+- `pnpm run dev`: start the extension in dev mode.
+- `pnpm run dev:firefox`: start a Firefox dev build.
+- `pnpm run build`: create a production Chromium build.
+- `pnpm run build:firefox`: create a Firefox production build.
+- `pnpm run zip`: package the Chromium build.
+- `pnpm run zip:firefox`: package the Firefox build.
+- `pnpm run zip:edge`: package the Edge build.
+- `pnpm run compile`: type-check with `vue-tsc --noEmit`.
 
 ## Verification Guidance
 
-- For TypeScript/Vue changes, run `bun run compile`.
-- For manifest, WXT config, entrypoint, or packaging-sensitive changes, run the relevant `bun run build` command.
+- For TypeScript/Vue changes, run `pnpm run compile`.
+- For manifest, WXT config, entrypoint, asset, font, or packaging-sensitive changes, run the relevant `pnpm run build` command.
 - For Firefox-specific manifest behavior, inspect `.output/firefox-*/manifest.json` after building.
 - For popup text changes, update all locale files or make a deliberate scoped locale-only change.
 - For ChatGPT DOM extraction changes, prefer testing against a saved/real page shape when available, such as `reference.html` in this repo.
+- For popup font changes, inspect `.output/chrome-mv3/assets/` and confirm no large `.ttf` passthrough file appears in the build.
 
 ## Working Guidance
 
