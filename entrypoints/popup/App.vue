@@ -1,14 +1,15 @@
 <script lang="ts" setup>
 import devlog from "@/utils/dev-log"
 import type { ConversationExportFormat } from "@/utils/get-conversation"
-import { ref } from "vue"
+import { onMounted, onUnmounted, ref } from "vue"
 import Toggle from "@/components/toggle.vue"
-import type { ExportErrorCode, ExportResponse } from "../../utils/export-flow"
+import type { ExportErrorCode, ExportResponse } from "@/utils/export-flow"
+import { defaultExportPreferences, exportPreferencesStorage, type ExportPreferences } from "@/utils/store"
 
 import { i18n } from "#imports"
 
-const includeUserToggle = ref(false)
-const includeRoleNamesToggle = ref(false)
+const includeUserToggle = ref(true)
+const includeRoleNamesToggle = ref(true)
 const includeImagesToggle = ref(true)
 const errorMessage = ref("")
 const isExporting = ref(false)
@@ -16,6 +17,7 @@ const isExporting = ref(false)
 const userPromptsId = "user-prompts"
 const roleNamesId = "role-names"
 const imagesId = "images"
+let savePreferencesQueue = Promise.resolve()
 
 function resolveErrorMessage(errorCode: ExportErrorCode) {
   switch (errorCode) {
@@ -31,6 +33,47 @@ function resolveErrorMessage(errorCode: ExportErrorCode) {
       return i18n.t("content.unexpectedError")
   }
 }
+
+function applyExportPreferences(preferences: ExportPreferences) {
+  includeUserToggle.value = preferences.includeUser
+  includeRoleNamesToggle.value = preferences.includeRoleNames
+  includeImagesToggle.value = preferences.includeImages
+}
+
+function saveExportPreferences() {
+  const preferences: ExportPreferences = {
+    includeUser: includeUserToggle.value,
+    includeRoleNames: includeRoleNamesToggle.value,
+    includeImages: includeImagesToggle.value,
+  }
+
+  savePreferencesQueue = savePreferencesQueue
+    .catch(() => undefined)
+    .then(() => exportPreferencesStorage.setValue(preferences))
+    .catch(error => {
+      devlog("saveExportPreferences error", error)
+    })
+}
+
+onMounted(async () => {
+  const storedPreferences = await exportPreferencesStorage.getValue()
+
+  applyExportPreferences({
+    ...defaultExportPreferences,
+    ...storedPreferences,
+  })
+})
+
+const unwatchExportPreferences = exportPreferencesStorage.watch(newPreferences => {
+  applyExportPreferences({
+    ...defaultExportPreferences,
+    ...newPreferences,
+  })
+})
+
+onUnmounted(() => {
+  unwatchExportPreferences()
+})
 
 async function logChatHandler(exportFormat: ConversationExportFormat) {
   if (isExporting.value) {
@@ -67,14 +110,17 @@ async function logChatHandler(exportFormat: ConversationExportFormat) {
 
 function toggleIncludeUser(check: boolean) {
   includeUserToggle.value = check
+  saveExportPreferences()
 }
 
 function toggleIncludeRoleNames(check: boolean) {
   includeRoleNamesToggle.value = check
+  saveExportPreferences()
 }
 
 function toggleIncludeImages(check: boolean) {
   includeImagesToggle.value = check
+  saveExportPreferences()
 }
 </script>
 
@@ -114,7 +160,7 @@ function toggleIncludeImages(check: boolean) {
           <label :for="userPromptsId" class="cursor-pointer text-sm font-semibold text-slate-100 select-none">
             {{ i18n.t("content.includeUserPrompts") }}
           </label>
-          <Toggle :id="userPromptsId" :set-checked="toggleIncludeUser" />
+          <Toggle :id="userPromptsId" :checked="includeUserToggle" :set-checked="toggleIncludeUser" />
         </div>
 
         <div
@@ -123,7 +169,7 @@ function toggleIncludeImages(check: boolean) {
           <label :for="roleNamesId" class="cursor-pointer text-sm font-semibold text-slate-100 select-none">
             {{ i18n.t("content.includeRoleNames") }}
           </label>
-          <Toggle :id="roleNamesId" :set-checked="toggleIncludeRoleNames" />
+          <Toggle :id="roleNamesId" :checked="includeRoleNamesToggle" :set-checked="toggleIncludeRoleNames" />
         </div>
 
         <div

@@ -1,6 +1,6 @@
 import devlog from "@/utils/dev-log"
 import { htmlToMarkdown } from "@/utils/html-to-markdown"
-import { ConversationExportError } from "./export-flow"
+import { ConversationExportError } from "@/utils/export-flow"
 
 export type ConversationExportFormat = "txt" | "markdown"
 

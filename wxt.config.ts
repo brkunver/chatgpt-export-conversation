@@ -6,7 +6,7 @@ export default defineConfig({
   modules: ["@wxt-dev/module-vue", "@wxt-dev/i18n/module"],
   manifest: {
     default_locale: "en",
-    permissions: ["tabs"],
+    permissions: ["tabs", "storage"],
     name: "__MSG_extensionName__",
     description: "__MSG_extensionDescription__",
   },
