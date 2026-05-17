@@ -5,8 +5,7 @@ const props = defineProps<{
   setChecked: (checked: boolean) => void
 }>()
 
-function onChange(e: Event)
-{
+function onChange(e: Event) {
   devlog("toggle.vue => onChange called")
   const target = e.target as HTMLInputElement
   devlog("toggle.vue => target.checked : ", target.checked)
@@ -15,10 +14,13 @@ function onChange(e: Event)
 </script>
 
 <template>
-  <label :for="props.id"
-    class="relative block h-8 w-14 cursor-pointer rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500">
+  <label
+    :for="props.id"
+    class="relative block h-8 w-14 cursor-pointer rounded-full bg-slate-300 shadow-inner transition-colors duration-200 [-webkit-tap-highlight-color:_transparent] has-checked:bg-emerald-500"
+  >
     <input type="checkbox" :id="props.id" class="peer sr-only" @change="onChange" />
     <span
-      class="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-white transition-[inset-inline-start] peer-checked:start-6"></span>
+      class="absolute inset-y-0 start-0 m-1 size-6 rounded-full bg-white shadow-[0_6px_16px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition-[inset-inline-start,transform] duration-200 peer-checked:start-6"
+    ></span>
   </label>
 </template>
