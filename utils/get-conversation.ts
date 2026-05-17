@@ -7,6 +7,12 @@ export type ConversationExportFormat = "txt" | "markdown"
 type MessageRole = "user" | "assistant"
 
 const MESSAGE_SELECTOR = "[data-message-author-role='assistant'], [data-message-author-role='user']"
+const IMAGE_SELECTOR = "img[src]"
+
+type ImageReference = {
+  alt: string
+  src: string
+}
 
 export function getConversation(
   includeUser = false,
@@ -48,12 +54,13 @@ function getMessageRole(element: HTMLElement): MessageRole {
 
 function getMessageContent(element: HTMLElement, role: MessageRole, exportFormat: ConversationExportFormat) {
   const contentElement = getMessageContentElement(element, role)
+  const contentAlreadyIncludesImages = exportFormat === "markdown" && role === "assistant"
+  const imageReferences = getMessageImageReferences(element, contentElement, contentAlreadyIncludesImages)
+  const imageContent = formatImageReferences(imageReferences, exportFormat)
+  const textContent =
+    exportFormat === "markdown" && role === "assistant" ? htmlToMarkdown(contentElement) : getPlainText(contentElement)
 
-  if (exportFormat === "markdown" && role === "assistant") {
-    return htmlToMarkdown(contentElement)
-  }
-
-  return getPlainText(contentElement)
+  return [textContent, imageContent].filter(Boolean).join("\n\n")
 }
 
 function getMessageContentElement(element: HTMLElement, role: MessageRole) {
@@ -68,6 +75,69 @@ function getPlainText(element: HTMLElement) {
   const text = element.innerText || element.textContent || ""
 
   return normalizePlainText(text)
+}
+
+function getMessageImageReferences(
+  messageElement: HTMLElement,
+  contentElement: HTMLElement,
+  contentAlreadyIncludesImages: boolean,
+) {
+  const seenSources = new Set<string>()
+
+  return Array.from(messageElement.querySelectorAll<HTMLImageElement>(IMAGE_SELECTOR))
+    .filter(image => !(contentAlreadyIncludesImages && contentElement.contains(image)))
+    .map(getImageReference)
+    .filter((reference): reference is ImageReference => {
+      if (!reference || seenSources.has(reference.src)) {
+        return false
+      }
+
+      seenSources.add(reference.src)
+      return true
+    })
+}
+
+function getImageReference(image: HTMLImageElement): ImageReference | undefined {
+  const src = image.currentSrc || image.src || image.getAttribute("src") || ""
+
+  if (!src) {
+    return
+  }
+
+  return {
+    alt: getImageAltText(image),
+    src,
+  }
+}
+
+function getImageAltText(image: HTMLImageElement) {
+  const alt = image.getAttribute("alt")?.trim()
+
+  if (alt) {
+    return alt
+  }
+
+  const labelledElement = image.closest<HTMLElement>("[aria-label]")
+  const label = labelledElement
+    ?.getAttribute("aria-label")
+    ?.replace(/^open image:\s*/i, "")
+    .trim()
+
+  return label || "Image"
+}
+
+function formatImageReferences(references: ImageReference[], exportFormat: ConversationExportFormat) {
+  if (references.length === 0) {
+    return ""
+  }
+
+  if (exportFormat === "markdown") {
+    return references
+      .map(reference => `![${escapeMarkdownLinkText(reference.alt)}](${escapeMarkdownUrl(reference.src)})`)
+      .join("\n\n")
+  }
+
+  return references.map(reference => `Image: ${reference.alt}\nURL: ${reference.src}`).join("\n\n")
 }
 
 function formatMessage(
@@ -100,6 +170,14 @@ function normalizePlainText(content: string) {
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim()
+}
+
+function escapeMarkdownLinkText(text: string) {
+  return text.replace(/([\]\\])/g, "\\$1")
+}
+
+function escapeMarkdownUrl(url: string) {
+  return url.replace(/\)/g, "%29")
 }
 
 function cleanExportContent(content: string, exportFormat: ConversationExportFormat) {
