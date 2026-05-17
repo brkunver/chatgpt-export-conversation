@@ -10,6 +10,13 @@ export default defineConfig({
     name: "__MSG_extensionName__",
     description: "__MSG_extensionDescription__",
   },
+  hooks: {
+    "build:manifestGenerated": (wxt, manifest) => {
+      if (wxt.config.mode === "development") {
+        manifest.name = `DEV | ${manifest.name}`
+      }
+    },
+  },
   webExt: {
     disabled: true,
   },
