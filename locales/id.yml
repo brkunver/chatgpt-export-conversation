@@ -9,5 +9,6 @@ content:
   unexpectedError: "Terjadi kesalahan yang tidak terduga. Silakan coba lagi."
   includeUserPrompts: "Sertakan Prompt Pengguna"
   includeRoleNames: "Sertakan Nama Peran"
+  includeImages: "Sertakan Gambar"
   downloadAsTxt: "Unduh Sebagai TXT"
   downloadAsMarkdown: "Unduh Sebagai Markdown"

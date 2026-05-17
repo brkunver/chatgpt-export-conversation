@@ -9,5 +9,6 @@ content:
   unexpectedError: "एक अप्रत्याशित त्रुटि हुई। कृपया फिर कोशिश करें।"
   includeUserPrompts: "उपयोगकर्ता संकेत शामिल करें"
   includeRoleNames: "भूमिका नाम शामिल करें"
+  includeImages: "छवियां शामिल करें"
   downloadAsTxt: "TXT के रूप में डाउनलोड करें"
   downloadAsMarkdown: "Markdown के रूप में डाउनलोड करें"

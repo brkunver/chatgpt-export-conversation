@@ -9,5 +9,6 @@ content:
   unexpectedError: "發生未預期的錯誤。請再試一次。"
   includeUserPrompts: "包含用户提示"
   includeRoleNames: "包含角色名称"
+  includeImages: "包含圖片"
   downloadAsTxt: "下载为TXT"
   downloadAsMarkdown: "下载为Markdown"

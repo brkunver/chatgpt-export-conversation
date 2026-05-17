@@ -18,6 +18,7 @@ export function getConversation(
   includeUser = false,
   includeRoleNames = false,
   exportFormat: ConversationExportFormat = "txt",
+  includeImages = true,
 ) {
   devlog("get conversation called")
 
@@ -31,7 +32,7 @@ export function getConversation(
   const content = messageElements
     .map(element => {
       const role = getMessageRole(element)
-      const messageContent = getMessageContent(element, role, exportFormat)
+      const messageContent = getMessageContent(element, role, exportFormat, includeImages)
 
       return formatMessage(messageContent, role, includeRoleNames, exportFormat)
     })
@@ -52,13 +53,22 @@ function getMessageRole(element: HTMLElement): MessageRole {
   return element.dataset.messageAuthorRole === "user" ? "user" : "assistant"
 }
 
-function getMessageContent(element: HTMLElement, role: MessageRole, exportFormat: ConversationExportFormat) {
+function getMessageContent(
+  element: HTMLElement,
+  role: MessageRole,
+  exportFormat: ConversationExportFormat,
+  includeImages: boolean,
+) {
   const contentElement = getMessageContentElement(element, role)
   const contentAlreadyIncludesImages = exportFormat === "markdown" && role === "assistant"
-  const imageReferences = getMessageImageReferences(element, contentElement, contentAlreadyIncludesImages)
+  const imageReferences = includeImages
+    ? getMessageImageReferences(element, contentElement, contentAlreadyIncludesImages)
+    : []
   const imageContent = formatImageReferences(imageReferences, exportFormat)
   const textContent =
-    exportFormat === "markdown" && role === "assistant" ? htmlToMarkdown(contentElement) : getPlainText(contentElement)
+    exportFormat === "markdown" && role === "assistant"
+      ? htmlToMarkdownForExport(contentElement, includeImages)
+      : getPlainText(contentElement)
 
   return [textContent, imageContent].filter(Boolean).join("\n\n")
 }
@@ -75,6 +85,17 @@ function getPlainText(element: HTMLElement) {
   const text = element.innerText || element.textContent || ""
 
   return normalizePlainText(text)
+}
+
+function htmlToMarkdownForExport(element: HTMLElement, includeImages: boolean) {
+  if (includeImages) {
+    return htmlToMarkdown(element)
+  }
+
+  const clone = element.cloneNode(true) as HTMLElement
+  clone.querySelectorAll(IMAGE_SELECTOR).forEach(image => image.remove())
+
+  return htmlToMarkdown(clone)
 }
 
 function getMessageImageReferences(

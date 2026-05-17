@@ -9,5 +9,6 @@ content:
   unexpectedError: "予期しないエラーが発生しました。もう一度お試しください。"
   includeUserPrompts: "ユーザーのプロンプトを含める"
   includeRoleNames: "役割名を含める"
+  includeImages: "画像を含める"
   downloadAsTxt: "TXTとしてダウンロード"
   downloadAsMarkdown: "Markdownとしてダウンロード"

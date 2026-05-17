@@ -9,5 +9,6 @@ content:
   unexpectedError: "An unexpected error occurred. Please try again."
   includeUserPrompts: "Include User Prompts"
   includeRoleNames: "Include Role Names"
+  includeImages: "Include Images"
   downloadAsTxt: "Download As TXT"
   downloadAsMarkdown: "Download As Markdown"

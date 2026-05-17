@@ -9,5 +9,6 @@ content:
   unexpectedError: "Произошла непредвиденная ошибка. Попробуйте ещё раз."
   includeUserPrompts: "Включать сообщения пользователя"
   includeRoleNames: "Включать названия ролей"
+  includeImages: "Включать изображения"
   downloadAsTxt: "Скачать как TXT"
   downloadAsMarkdown: "Скачать как Markdown"

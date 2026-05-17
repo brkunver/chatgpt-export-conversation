@@ -9,5 +9,6 @@ content:
   unexpectedError: "Wystąpił nieoczekiwany błąd. Spróbuj ponownie."
   includeUserPrompts: "Uwzględnij Prośby Użytkownika"
   includeRoleNames: "Uwzględnij Nazwy Ról"
+  includeImages: "Uwzględnij Obrazy"
   downloadAsTxt: "Pobierz Jako TXT"
   downloadAsMarkdown: "Pobierz Jako Markdown"

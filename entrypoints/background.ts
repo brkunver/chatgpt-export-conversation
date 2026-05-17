@@ -42,6 +42,7 @@ export default defineBackground(() => {
         exportFormat: req.exportFormat,
         includeUser: req.includeUser,
         includeRoleNames: req.includeRoleNames,
+        includeImages: req.includeImages,
       })) as ExportResponse | undefined
 
       if (!response) {

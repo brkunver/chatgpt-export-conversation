@@ -9,5 +9,6 @@ content:
   unexpectedError: "Er is een onverwachte fout opgetreden. Probeer het opnieuw."
   includeUserPrompts: "Inclusief Gebruikersprompts"
   includeRoleNames: "Inclusief Rolnamen"
+  includeImages: "Afbeeldingen opnemen"
   downloadAsTxt: "Download Als TXT"
   downloadAsMarkdown: "Download Als Markdown"

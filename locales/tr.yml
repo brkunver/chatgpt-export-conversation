@@ -9,5 +9,6 @@ content:
   unexpectedError: "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
   includeUserPrompts: "Kullanıcı Mesajlarını Dahil Et"
   includeRoleNames: "Rol İsimlerini Dahil Et"
+  includeImages: "Resimleri Dahil Et"
   downloadAsTxt: "TXT Olarak İndir"
   downloadAsMarkdown: "Markdown Olarak İndir"

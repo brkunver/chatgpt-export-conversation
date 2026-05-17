@@ -23,9 +23,10 @@ export default defineContentScript({
       }
 
       const exportFormat: ConversationExportFormat = req.exportFormat === "markdown" ? "markdown" : "txt"
+      const includeImages = req.includeImages !== false
 
       try {
-        const content = getConversation(req.includeUser, req.includeRoleNames, exportFormat)
+        const content = getConversation(req.includeUser, req.includeRoleNames, exportFormat, includeImages)
 
         try {
           downloadConversationFile(content, exportFormat, document.title)
