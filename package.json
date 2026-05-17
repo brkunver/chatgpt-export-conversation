@@ -4,6 +4,7 @@
   "private": false,
   "version": "2.0.0",
   "type": "module",
+  "packageManager": "pnpm@11.1.2",
   "scripts": {
     "dev": "wxt",
     "dev:firefox": "wxt -b firefox",
@@ -27,10 +28,12 @@
     "tailwindcss": "^4.1.4",
     "typescript": "5.6.3",
     "vue-tsc": "^2.2.8",
-    "wxt": "^0.20.3"
+    "wxt": "^0.20.26"
   },
-  "trustedDependencies": [
-    "@tailwindcss/oxide",
-    "spawn-sync"
-  ]
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "spawn-sync"
+    ]
+  }
 }
