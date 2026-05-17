@@ -2,7 +2,11 @@ extensionName: "ChatGPT Ekspor Percakapan"
 extensionDescription: "Ekspor percakapan ChatGPT Anda sebagai file teks"
 
 content:
-  chatGptTabNotFound: "Anda harus membuka tab chatgpt.com/c/* untuk mengekspor percakapan."
+  chatGptTabNotFound: "Silakan buka ChatGPT."
+  conversationNotFound: "Saya tidak dapat membaca percakapan dari halaman ini."
+  contentScriptUnavailable: "Halaman percakapan belum siap. Muat ulang lalu coba lagi."
+  downloadFailed: "File tidak dapat diunduh. Silakan coba lagi."
+  unexpectedError: "Terjadi kesalahan yang tidak terduga. Silakan coba lagi."
   includeUserPrompts: "Sertakan Prompt Pengguna"
   includeRoleNames: "Sertakan Nama Peran"
   downloadAsTxt: "Unduh Sebagai TXT"

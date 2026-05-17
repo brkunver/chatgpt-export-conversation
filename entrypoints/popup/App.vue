@@ -3,41 +3,63 @@ import devlog from "@/utils/dev-log"
 import type { ConversationExportFormat } from "@/utils/get-conversation"
 import { ref } from "vue"
 import Toggle from "@/components/toggle.vue"
+import type { ExportErrorCode, ExportResponse } from "../../utils/export-flow"
 
 import { i18n } from "#imports"
 
 const includeUserToggle = ref(false)
 const includeRoleNamesToggle = ref(false)
 const errorMessage = ref("")
+const isExporting = ref(false)
 
 const userPromptsId = "user-prompts"
 const roleNamesId = "role-names"
 
-function logChatHandler(exportFormat: ConversationExportFormat) {
+function resolveErrorMessage(errorCode: ExportErrorCode) {
+  switch (errorCode) {
+    case "no_chatgpt_site":
+      return i18n.t("content.chatGptTabNotFound")
+    case "no_messages_found":
+      return i18n.t("content.conversationNotFound")
+    case "content_script_unavailable":
+      return i18n.t("content.contentScriptUnavailable")
+    case "download_failed":
+      return i18n.t("content.downloadFailed")
+    case "unexpected_error":
+      return i18n.t("content.unexpectedError")
+  }
+}
+
+async function logChatHandler(exportFormat: ConversationExportFormat) {
+  if (isExporting.value) {
+    return
+  }
+
+  isExporting.value = true
   errorMessage.value = ""
-  browser.tabs.query({}, function (tabs) {
-    const targetTab = tabs.find(function (tab) {
-      return tab.url && tab.url.startsWith("https://chatgpt.com/c/")
-    })
-    if (!targetTab) {
-      errorMessage.value = i18n.t("content.chatGptTabNotFound")
+
+  try {
+    devlog("logChatHandler called")
+    const response = (await browser.runtime.sendMessage({
+      action: "logContent",
+      exportFormat,
+      includeUser: includeUserToggle.value,
+      includeRoleNames: includeRoleNamesToggle.value,
+    })) as ExportResponse | undefined
+
+    if (!response || !response.ok) {
+      const errorCode = response?.ok === false ? response.errorCode : "unexpected_error"
+      errorMessage.value = resolveErrorMessage(errorCode)
       return
     }
-    devlog("logChatHandler called")
-    browser.runtime
-      .sendMessage({
-        action: "logContent",
-        exportFormat,
-        includeUser: includeUserToggle.value,
-        includeRoleNames: includeRoleNamesToggle.value,
-      })
-      .then(function () {
-        devlog("logChatHandler done")
-      })
-      .catch(function () {
-        devlog("logChatHandler error")
-      })
-  })
+
+    devlog("logChatHandler done")
+  } catch (error) {
+    devlog("logChatHandler error", error)
+    errorMessage.value = resolveErrorMessage("unexpected_error")
+  } finally {
+    isExporting.value = false
+  }
 }
 
 function toggleIncludeUser(check: boolean) {
@@ -101,14 +123,16 @@ function toggleIncludeRoleNames(check: boolean) {
       <div class="grid grid-cols-2 gap-2">
         <button
           type="button"
-          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 px-3 py-3 text-sm font-semibold leading-tight text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 active:translate-y-0"
+          :disabled="isExporting"
+          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 px-3 py-3 text-sm font-semibold leading-tight text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
           @click="logChatHandler('txt')"
         >
           {{ i18n.t("content.downloadAsTxt") }}
         </button>
         <button
           type="button"
-          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl border border-cyan-300/35 bg-cyan-400/10 px-3 py-3 text-sm font-semibold leading-tight text-cyan-100 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300/60 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 active:translate-y-0"
+          :disabled="isExporting"
+          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl border border-cyan-300/35 bg-cyan-400/10 px-3 py-3 text-sm font-semibold leading-tight text-cyan-100 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300/60 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
           @click="logChatHandler('markdown')"
         >
           {{ i18n.t("content.downloadAsMarkdown") }}

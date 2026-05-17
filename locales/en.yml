@@ -2,7 +2,11 @@ extensionName: "ChatGPT Export Conversation"
 extensionDescription: "Export your ChatGPT conversations as text files"
 
 content:
-  chatGptTabNotFound: "You must have a chatgpt.com/c/* tab open to export the conversation."
+  chatGptTabNotFound: "Please open ChatGPT."
+  conversationNotFound: "I couldn't read the conversation from this page."
+  contentScriptUnavailable: "The conversation page is not ready yet. Please refresh and try again."
+  downloadFailed: "The file could not be downloaded. Please try again."
+  unexpectedError: "An unexpected error occurred. Please try again."
   includeUserPrompts: "Include User Prompts"
   includeRoleNames: "Include Role Names"
   downloadAsTxt: "Download As TXT"

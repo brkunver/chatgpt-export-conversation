@@ -2,7 +2,11 @@ extensionName: "ChatGPT Eksportuj Konwersację"
 extensionDescription: "Eksportuj swoje konwersacje z ChatGPT jako pliki tekstowe"
 
 content:
-  chatGptTabNotFound: "Musisz mieć otwartą kartę chatgpt.com/c/*, aby wyeksportować konwersację."
+  chatGptTabNotFound: "Otwórz ChatGPT."
+  conversationNotFound: "Nie udało mi się odczytać rozmowy z tej strony."
+  contentScriptUnavailable: "Strona rozmowy nie jest jeszcze gotowa. Odśwież ją i spróbuj ponownie."
+  downloadFailed: "Nie udało się pobrać pliku. Spróbuj ponownie."
+  unexpectedError: "Wystąpił nieoczekiwany błąd. Spróbuj ponownie."
   includeUserPrompts: "Uwzględnij Prośby Użytkownika"
   includeRoleNames: "Uwzględnij Nazwy Ról"
   downloadAsTxt: "Pobierz Jako TXT"

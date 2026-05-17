@@ -2,7 +2,11 @@ extensionName: "Exportar conversación de ChatGPT"
 extensionDescription: "Exporta tus conversaciones de ChatGPT como archivos de texto"
 
 content:
-  chatGptTabNotFound: "Debes tener una pestaña chatgpt.com/c/* abierta para exportar la conversación."
+  chatGptTabNotFound: "Abre ChatGPT."
+  conversationNotFound: "No pude leer la conversación de esta página."
+  contentScriptUnavailable: "La página de conversación aún no está lista. Actualízala e inténtalo de nuevo."
+  downloadFailed: "No se pudo descargar el archivo. Inténtalo de nuevo."
+  unexpectedError: "Ocurrió un error inesperado. Inténtalo de nuevo."
   includeUserPrompts: "Incluir mensajes del usuario"
   includeRoleNames: "Incluir nombres de roles"
   downloadAsTxt: "Descargar como TXT"

@@ -2,7 +2,11 @@ extensionName: "ChatGPT 导出对话"
 extensionDescription: "将您的 ChatGPT 对话导出为文本文件"
 
 content:
-  chatGptTabNotFound: "您必须打开 chatgpt.com/c/* 标签页才能导出对话。"
+  chatGptTabNotFound: "请打开 ChatGPT。"
+  conversationNotFound: "无法从此页面读取对话。"
+  contentScriptUnavailable: "对话页面尚未准备好。请刷新后重试。"
+  downloadFailed: "无法下载文件。请重试。"
+  unexpectedError: "发生了意外错误。请重试。"
   includeUserPrompts: "包含用户提示"
   includeRoleNames: "包含角色名称"
   downloadAsTxt: "下载为 TXT"

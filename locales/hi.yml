@@ -2,7 +2,11 @@ extensionName: "ChatGPT वार्तालाप निर्यात कर
 extensionDescription: "अपनी ChatGPT वार्तालापों को टेक्स्ट फ़ाइलों के रूप में निर्यात करें"
 
 content:
-  chatGptTabNotFound: "वार्तालाप निर्यात करने के लिए आपके पास chatgpt.com/c/* टैब खुला होना चाहिए।"
+  chatGptTabNotFound: "कृपया ChatGPT खोलें।"
+  conversationNotFound: "मैं इस पेज से बातचीत नहीं पढ़ सका।"
+  contentScriptUnavailable: "बातचीत पृष्ठ अभी तैयार नहीं है। कृपया पेज रीफ़्रेश करके फिर कोशिश करें।"
+  downloadFailed: "फ़ाइल डाउनलोड नहीं हो सकी। कृपया फिर कोशिश करें।"
+  unexpectedError: "एक अप्रत्याशित त्रुटि हुई। कृपया फिर कोशिश करें।"
   includeUserPrompts: "उपयोगकर्ता संकेत शामिल करें"
   includeRoleNames: "भूमिका नाम शामिल करें"
   downloadAsTxt: "TXT के रूप में डाउनलोड करें"

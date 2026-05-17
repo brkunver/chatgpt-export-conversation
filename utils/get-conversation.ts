@@ -1,5 +1,6 @@
 import devlog from "@/utils/dev-log"
 import { htmlToMarkdown } from "@/utils/html-to-markdown"
+import { ConversationExportError } from "./export-flow"
 
 export type ConversationExportFormat = "txt" | "markdown"
 
@@ -32,7 +33,13 @@ export function getConversation(
     .join("\n\n")
 
   devlog("content : ", content)
-  return cleanExportContent(content, exportFormat)
+  const cleanedContent = cleanExportContent(content, exportFormat)
+
+  if (!cleanedContent) {
+    throw new ConversationExportError("no_messages_found")
+  }
+
+  return cleanedContent
 }
 
 function getMessageRole(element: HTMLElement): MessageRole {

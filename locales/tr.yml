@@ -2,7 +2,11 @@ extensionName: "ChatGPT Konuşmayı İndir"
 extensionDescription: "ChatGPT sohbetlerinizi metin dosyası olarak dışa aktarın"
 
 content:
-  chatGptTabNotFound: "Sohbeti dışa aktarmak için chatgpt.com/c/* sekmesi açık olmalıdır."
+  chatGptTabNotFound: "Lütfen ChatGPT sitesini açın."
+  conversationNotFound: "Bu sayfadan sohbeti okuyamadım."
+  contentScriptUnavailable: "Sohbet sayfası henüz hazır değil. Lütfen yenileyip tekrar deneyin."
+  downloadFailed: "Dosya indirilemedi. Lütfen tekrar deneyin."
+  unexpectedError: "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
   includeUserPrompts: "Kullanıcı Mesajlarını Dahil Et"
   includeRoleNames: "Rol İsimlerini Dahil Et"
   downloadAsTxt: "TXT Olarak İndir"
