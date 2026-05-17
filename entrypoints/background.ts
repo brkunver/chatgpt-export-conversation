@@ -18,6 +18,7 @@ export default defineBackground(() => {
           browser.tabs
             .sendMessage(tabId, {
               action: "log",
+              exportFormat: req.exportFormat,
               includeUser: req.includeUser,
               includeRoleNames: req.includeRoleNames,
             })
