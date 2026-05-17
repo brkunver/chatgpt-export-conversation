@@ -51,65 +51,69 @@ function toggleIncludeRoleNames(check: boolean) {
 
 <template>
   <main
-    class="w-[320px] bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.16),_transparent_42%),linear-gradient(180deg,#f8fbff_0%,#edf4ff_100%)] p-3 text-slate-900"
+    class="relative w-[320px] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.22),_transparent_38%),linear-gradient(180deg,#0f172a_0%,#111827_52%,#0b1220_100%)] px-3 py-3 text-slate-50"
   >
-    <section
-      class="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/90 p-4 shadow-[0_22px_60px_rgba(15,23,42,0.12)] backdrop-blur-sm"
-    >
-      <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500"></div>
+    <div
+      class="pointer-events-none absolute -top-24 right-[-56px] h-44 w-44 rounded-full bg-cyan-400/20 blur-3xl"
+    ></div>
+    <div
+      class="pointer-events-none absolute bottom-[-64px] left-[-72px] h-44 w-44 rounded-full bg-sky-500/15 blur-3xl"
+    ></div>
 
-      <div class="mb-4 text-center">
-        <h1
-          class="bg-gradient-to-r from-sky-700 via-cyan-700 to-emerald-700 bg-clip-text text-2xl font-black tracking-tight text-transparent"
-        >
+    <div class="relative space-y-4">
+      <header class="text-center">
+        <h1 class="text-[1.65rem] font-black leading-tight tracking-tight text-white">
           {{ i18n.t("extensionName") }}
         </h1>
-      </div>
+        <p class="mt-1 text-sm text-slate-300">
+          {{ i18n.t("extensionDescription") }}
+        </p>
+      </header>
 
       <div
         v-if="errorMessage"
         role="alert"
-        class="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm font-medium text-rose-700 shadow-sm"
+        class="rounded-2xl border border-rose-400/20 bg-rose-500/15 px-3 py-2 text-sm font-medium text-rose-100 shadow-sm"
       >
         {{ errorMessage }}
       </div>
 
       <div class="space-y-3">
         <div
-          class="flex items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-3 py-3 shadow-sm transition hover:border-sky-200 hover:bg-white"
+          class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/6 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-sm transition hover:border-cyan-300/30 hover:bg-white/8"
         >
-          <label :for="userPromptsId" class="cursor-pointer select-none text-sm font-semibold text-slate-700">
+          <label :for="userPromptsId" class="cursor-pointer select-none text-sm font-semibold text-slate-100">
             {{ i18n.t("content.includeUserPrompts") }}
           </label>
           <Toggle :id="userPromptsId" :set-checked="toggleIncludeUser" />
         </div>
 
         <div
-          class="flex items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-slate-50/80 px-3 py-3 shadow-sm transition hover:border-sky-200 hover:bg-white"
+          class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/6 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-sm transition hover:border-cyan-300/30 hover:bg-white/8"
         >
-          <label :for="roleNamesId" class="cursor-pointer select-none text-sm font-semibold text-slate-700">
+          <label :for="roleNamesId" class="cursor-pointer select-none text-sm font-semibold text-slate-100">
             {{ i18n.t("content.includeRoleNames") }}
           </label>
           <Toggle :id="roleNamesId" :set-checked="toggleIncludeRoleNames" />
         </div>
       </div>
 
-      <div class="mt-4 grid grid-cols-2 gap-2">
+      <div class="grid grid-cols-2 gap-2">
         <button
           type="button"
-          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 px-3 py-3 text-sm font-semibold leading-tight text-white shadow-lg shadow-slate-900/20 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 active:translate-y-0"
+          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 px-3 py-3 text-sm font-semibold leading-tight text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 active:translate-y-0"
           @click="logChatHandler('txt')"
         >
           {{ i18n.t("content.downloadAsTxt") }}
         </button>
         <button
           type="button"
-          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl border border-cyan-200 bg-cyan-50 px-3 py-3 text-sm font-semibold leading-tight text-cyan-900 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 active:translate-y-0"
+          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl border border-cyan-300/35 bg-cyan-400/10 px-3 py-3 text-sm font-semibold leading-tight text-cyan-100 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300/60 hover:bg-cyan-300/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 active:translate-y-0"
           @click="logChatHandler('markdown')"
         >
           {{ i18n.t("content.downloadAsMarkdown") }}
         </button>
       </div>
-    </section>
+    </div>
   </main>
 </template>
