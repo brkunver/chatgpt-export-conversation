@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "उपयोगकर्ता संकेत शामिल करें"
   includeRoleNames: "भूमिका नाम शामिल करें"
   downloadAsTxt: "TXT के रूप में डाउनलोड करें"
+  downloadAsMarkdown: "Markdown के रूप में डाउनलोड करें"

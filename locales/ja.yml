@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "ユーザーのプロンプトを含める"
   includeRoleNames: "役割名を含める"
   downloadAsTxt: "TXTとしてダウンロード"
+  downloadAsMarkdown: "Markdownとしてダウンロード"

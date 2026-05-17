@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "تضمين مطالبات المستخدم"
   includeRoleNames: "تضمين أسماء الأدوار"
   downloadAsTxt: "تنزيل كـ TXT"
+  downloadAsMarkdown: "تنزيل كـ Markdown"

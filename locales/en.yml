@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "Include User Prompts"
   includeRoleNames: "Include Role Names"
   downloadAsTxt: "Download As TXT"
+  downloadAsMarkdown: "Download As Markdown"

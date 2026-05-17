@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "Kullanıcı Mesajlarını Dahil Et"
   includeRoleNames: "Rol İsimlerini Dahil Et"
   downloadAsTxt: "TXT Olarak İndir"
+  downloadAsMarkdown: "Markdown Olarak İndir"

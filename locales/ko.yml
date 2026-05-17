@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "사용자 프롬프트 포함"
   includeRoleNames: "역할 이름 포함"
   downloadAsTxt: "TXT로 다운로드"
+  downloadAsMarkdown: "Markdown으로 다운로드"

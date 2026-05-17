@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "Sertakan Prompt Pengguna"
   includeRoleNames: "Sertakan Nama Peran"
   downloadAsTxt: "Unduh Sebagai TXT"
+  downloadAsMarkdown: "Unduh Sebagai Markdown"

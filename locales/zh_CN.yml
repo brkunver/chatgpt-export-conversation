@@ -6,3 +6,4 @@ content:
   includeUserPrompts: "包含用户提示"
   includeRoleNames: "包含角色名称"
   downloadAsTxt: "下载为 TXT"
+  downloadAsMarkdown: "下载为 Markdown"
