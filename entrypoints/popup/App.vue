@@ -126,7 +126,7 @@ function toggleIncludeImages(check: boolean) {
 
 <template>
   <main
-    class="relative w-[320px] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.22),_transparent_38%),linear-gradient(180deg,#0f172a_0%,#111827_52%,#0b1220_100%)] px-3 py-3 text-slate-50"
+    class="relative w-[320px] overflow-hidden bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.22),transparent_38%),linear-gradient(180deg,#0f172a_0%,#111827_52%,#0b1220_100%)] px-3 py-3 text-slate-50"
   >
     <div
       class="pointer-events-none absolute -top-24 right-[-56px] h-44 w-44 rounded-full bg-cyan-400/20 blur-3xl"
@@ -186,7 +186,7 @@ function toggleIncludeImages(check: boolean) {
         <button
           type="button"
           :disabled="isExporting"
-          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 px-3 py-3 text-sm leading-tight font-semibold text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
+          class="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-2xl bg-linear-to-r from-slate-950 via-slate-900 to-slate-950 px-3 py-3 text-sm leading-tight font-semibold text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
           @click="logChatHandler('txt')"
         >
           {{ i18n.t("content.downloadAsTxt") }}
