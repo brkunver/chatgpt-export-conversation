@@ -13,7 +13,7 @@ function mapContentError(error: unknown): ExportErrorCode {
 }
 
 export default defineContentScript({
-  matches: ["*://chatgpt.com/*", "*://*.chatgpt.com/c/*", "*://*.chatgpt.com/g/*"],
+  matches: ["*://chatgpt.com/*", "*://*.chatgpt.com/*"],
   main() {
     devlog("content script loaded")
     browser.runtime.onMessage.addListener((req): ExportResponse | undefined => {

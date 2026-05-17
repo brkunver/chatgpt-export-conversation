@@ -7,6 +7,8 @@ export type ExportErrorCode =
 
 export type ExportResponse = { ok: true } | { ok: false; errorCode: ExportErrorCode }
 
+const SUPPORTED_CHATGPT_PATH_PREFIXES = ["/c", "/g", "/gg"]
+
 export class ConversationExportError extends Error {
   constructor(
     public readonly code: ExportErrorCode,
@@ -41,7 +43,7 @@ export function isConversationTabUrl(url?: string) {
   try {
     const pathname = new URL(url).pathname
 
-    return pathname.startsWith("/c/") || pathname.startsWith("/g/")
+    return SUPPORTED_CHATGPT_PATH_PREFIXES.some(prefix => pathname === prefix || pathname.startsWith(`${prefix}/`))
   } catch {
     return false
   }
