@@ -8,6 +8,7 @@
 - Added persistent export preferences so popup choices are remembered.
 - Added safer downloads with filenames based on the ChatGPT tab title.
 - Improved ChatGPT URL checks and localized export error handling.
+- Migrate package manager from bun to pnpm. ( For Development )
 
 ## [1.0.1]
 
